@@ -28,7 +28,8 @@ import org.apache.hudi.hadoop.utils.HoodieHiveUtils;
 import org.apache.hudi.hadoop.utils.HoodieInputFormatUtils;
 import org.apache.hudi.hadoop.utils.HudiStringInternUtils;
 import org.apache.hudi.hadoop.utils.HudiHiveFileFormatUtils;
-
+import org.apache.hudi.hadoop.utils.shims.HiveShims;
+import org.apache.hudi.hadoop.utils.shims.HiveShim;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.Path;
@@ -65,20 +66,9 @@ import org.apache.hadoop.mapred.Reporter;
 import org.apache.hadoop.mapred.lib.CombineFileInputFormat;
 import org.apache.hadoop.mapred.lib.CombineFileSplit;
 import org.apache.hadoop.mapreduce.JobContext;
-import org.apache.hive.common.util.HiveVersionInfo;
-import org.apache.hudi.common.util.ReflectionUtils;
-import org.apache.hudi.common.util.ValidationUtils;
-import org.apache.hudi.hadoop.HoodieParquetInputFormat;
-import org.apache.hudi.hadoop.HoodieParquetInputFormatBase;
-import org.apache.hudi.hadoop.realtime.HoodieCombineRealtimeRecordReader;
-import org.apache.hudi.hadoop.realtime.HoodieParquetRealtimeInputFormat;
-import org.apache.hudi.hadoop.utils.HoodieInputFormatUtils;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.apache.hudi.hadoop.utils.HudiHiveFileFormatUtils;
-import org.apache.hudi.hadoop.utils.HudiStringInternUtils;
-
 import org.apache.hudi.hadoop.utils.shims.HiveCompatibleShim;
 import org.apache.hudi.hadoop.utils.shims.HiveCompatibleShims;
 import java.io.DataInput;

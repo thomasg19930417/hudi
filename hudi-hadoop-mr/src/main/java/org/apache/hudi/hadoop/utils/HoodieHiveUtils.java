@@ -22,6 +22,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapreduce.JobContext;
+import org.apache.hive.common.util.HiveVersionInfo;
 import org.apache.hudi.common.util.CollectionUtils;
 import org.apache.hudi.common.util.Option;
 import org.apache.log4j.LogManager;
@@ -73,6 +74,16 @@ public class HoodieHiveUtils {
   public static final int MAX_COMMIT_ALL = -1;
   public static final Pattern HOODIE_CONSUME_MODE_PATTERN_STRING = Pattern.compile("hoodie\\.(.*)\\.consume\\.mode");
   public static final String GLOBALLY_CONSISTENT_READ_TIMESTAMP = "last_replication_timestamp";
+
+  private static final boolean IS_HIVE3 = isHive3();
+
+  public static boolean isHive3() {
+    return HiveVersionInfo.getShortVersion().startsWith("3");
+  }
+
+  public static boolean isHive2() {
+    return HiveVersionInfo.getShortVersion().startsWith("2");
+  }
 
   public static boolean shouldIncludePendingCommits(JobConf job, String tableName) {
     return job.getBoolean(String.format(HOODIE_CONSUME_PENDING_COMMITS, tableName), false);
